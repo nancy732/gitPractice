@@ -1,0 +1,121 @@
+.flex{
+    display: flex;
+    flex-direction: column;
+}
+.flex1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 50px;
+    padding-top: 10px;
+}
+a.w3school
+{
+    color:rgb(63, 60, 60);
+    font-size:37px;
+    font-family:'fontawesome';
+    text-decoration: none;
+    
+    
+}
+span.dotcom
+{
+    color:darkgreen;
+    font-size:37px;
+    font-family: 'fontawesome';
+    
+}
+.flex2{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: green;
+    justify-content: space-between;
+    height: 50px;
+    padding-top: 10px;
+}
+.flex2>div{
+    margin: 10px;
+    text-align: center;
+    color: white;
+    font-size: 23px;
+}
+.flex3{
+    display: flex;
+    justify-content: space-between;
+}
+.flex4{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 8px 16px;
+    background-color: rgb(255, 252, 240);
+    box-shadow: 2px 0 2px rgb(184, 181, 181);
+}
+.flex5{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.row>div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px !important;
+    line-height: 1.5;
+    width: 500px;
+}
+.cl{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color:rgb(238, 235, 235);
+    padding-bottom: 20px;
+    margin-top: 5%;
+    width: 100%;
+}
+.cl>div{
+    width:450px;
+}
+.row1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    background-color: gray;
+    height:400px;
+}
+.row1>div{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 !important;
+    line-height: 1.5;
+}
+.row1>div>h1{
+    font-size: 60px;
+    text-align: center; 
+    margin-top:15%; 
+    margin-bottom:0;
+}
+.row1>div>h2{
+    text-align:center;
+    margin:1px
+}
+.row1>div>button{
+    text-align: center;
+    /* position: relative; */
+    /* left:30%; */
+    /* top:25px; */
+    height:30px;
+    width:40%;
+    background-color: gray;
+    color:white;
+}
