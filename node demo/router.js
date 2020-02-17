@@ -1,6 +1,7 @@
 var express = require("express")
 var router = express.Router()
-var signin = require('./mongooseFile')
+const passport = require("passport")
+var passportSetup = require('./config/passport-setup')
 
 var multer = require('multer')
 var storage = multer.diskStorage({
@@ -13,71 +14,57 @@ var storage = multer.diskStorage({
 });
 var upload = multer({storage: storage});
 console.log("we are on router.js")
-
+var userapi = require('./api');
   
 router.get('/adduser', function (req, res) {
   res.sendFile('/home/com123/Desktop/node demo/public/signup.html')
 })
 
-router.post('/user',upload.single('avatar'),function(req,res,next){
-  console.log("data",req.body)
-  console.log("file",req.file)
+router.post('/user',upload.single('avatar'),async function(req,res,next){
+ data = req.body
+  try
+  {
+    let resFromAPI = await userapi.user(data,req.file,res);
 
-    signin.findOne({email: req.body.email},function(err,result){
-      if(err)
-      {
-        res.send(err)
-      }
-      if(result){
-        res.send("email already exist")
-      }
-      else{
-        if(req.body.psw == req.body.repeat)
-          {
-            let data = req.body
-            data.fileName=req.file.originalname;
-
-            signin.create(data,function(err,result){
-              if(err){
-                  res.send(err)
-              }
-            res.sendFile('/home/com123/Desktop/node demo/public/login.html')
-            })
-          }
-          else{
-            res.send("enter valid details")
-          }
-        
-      }
-    })
-          
-})
-
-router.post('/users',function(req,res){
-  console.log("data",req.body)
-  signin.find({email: req.body.email,psw: req.body.psw},'email',function(err,result){
-
-    if(err){
-      res.send(err)
-    }
-    else if(result.length === 1){
-      console.log("result",result)
-      res.sendFile('/home/com123/Desktop/node demo/public/game2.html')
-      }
-      else{
-        res.send("user do not exist")
-      }
-    
-  })
-})
-
-router.post('/game',function(req,res)
-{
-  if(err)
+    res.sendFile('/home/com123/Desktop/node demo/public/login.html')          
+  }
+  catch(err)
   {
     res.send(err)
   }
+          
 })
+
+router.post('/users', async function(req,res){
+  console.log("data",req.body)
+  try{
+    let resultFromAPI = await userapi.users(req.body,res)
+    res.sendFile(__dirname + '/public/game2.html')
+  }
+  catch(err){
+    res.send(err)
+  }
+  
+})
+
+router.get('/google', passport.authenticate('google',{
+  scope:['profile']
+}));
+
+router.get('/google/redirect',passport.authenticate('google'),(req,res)=>
+{
+  //res.sendFile('/home/com123/Desktop/node demo/public/game2.html')
+  //res.sendFile(__dirname + '/public/game2.html')
+  res.redirect('/game?origin=${req.originalUrl}');
+  
+});
+
+
+router.get('/game',function(req,res)
+{
+  res.sendFile('/home/com123/Desktop/node demo/public/game2.html')
+}
+)
 
 
  

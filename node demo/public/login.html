@@ -21,6 +21,7 @@ button {
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
+  font-size: 16px;
   border: none;
   cursor: pointer;
   width: 100%;
@@ -67,8 +68,8 @@ span.psw {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 7% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
+  margin-left: 10%; /* 5% from the top, 15% from the bottom and centered */
+  
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
@@ -114,6 +115,16 @@ span.psw {
      width: 100%;
   }
 }
+.google-btn{
+                
+                color: #fff;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 15px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+            }
 </style>
 </head>
 <body onload="document.getElementById('id01').style.display='block'" style="width:auto;">
@@ -123,7 +134,7 @@ span.psw {
   <form class="modal-content animate" action="http://localhost:8081/users" method="post">
     
       <a href="signup.html" onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</a>
-
+    <h1 style="text-align: center;">LOGIN</h1>
     <div class="container">
       <label for="email"><b>Email</b></label>
       <input type="email" placeholder="Enter email" name="email" required>
@@ -131,16 +142,15 @@ span.psw {
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
         
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+      <button type="submit">Login</button>      
     </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <a type="button" href='signup.html' class="cancelbtn">Cancel</a>
-    </div>
+   
   </form>
+  <div class="modal-content animate, container" style="background-color:#f1f1f1;width:77.5%">
+    <button    style="background-color: #ff5353;"  onclick="location.href='/auth/google/'" >google</button>
+   
+   <button style="background-color: blue;"><a  class="google-btn" href="/signup">Facebook+</a></button>
+  </div>
 </div>
 
 <script>
@@ -153,6 +163,23 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+// let googleSignin = ()=>{
+//   console.log("ghgj")
+//   fetch('/auth/google',{method:'GET'})
+//     .then(function(response){
+
+//       if(response.ok){
+//         console.log('click was recorded');
+//         return;
+//       }
+//       throw new Error('Request Failed');
+//     })
+//     .catch(function(error){
+//       console.log(error);
+//     })
+// }
+
 </script>
 
 </body>
